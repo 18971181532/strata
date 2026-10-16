@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "strata-disk"
+version = "0.1.0"
+description = "Strata - zero-dependency disk cartographer: squarified treemaps, exact duplicate detection, cleanup recommendations, interactive web dashboard"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "遥か"}]
+keywords = ["disk-usage", "treemap", "duplicate-files", "disk-cleanup", "filesystem", "sunburst", "storage"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: System :: Filesystems",
+    "Environment :: Console",
+]
+dependencies = []
+
+[project.scripts]
+strata = "strata.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/18971181532/strata"
+
+[tool.setuptools]
+packages = ["strata"]
+
+[tool.setuptools.package-data]
+strata = ["web/*.html", "web/*.css", "web/*.js"]

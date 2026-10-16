@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strata — Disk Cartographer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">▚</span>
+    <span class="brand-name">Strata</span>
+    <span class="brand-sub">disk cartographer</span>
+  </div>
+  <div class="top-actions">
+    <nav id="breadcrumb" class="breadcrumb"></nav>
+    <div class="depth-control">
+      <label>Depth</label>
+      <select id="depth-select">
+        <option value="1">1</option>
+        <option value="2" selected>2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+    </div>
+    <button id="refresh-btn" title="Re-scan">↻ Rescan</button>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="treemap">Treemap</button>
+  <button class="tab" data-tab="sunburst">Sunburst</button>
+  <button class="tab" data-tab="overview">Overview</button>
+  <button class="tab" data-tab="duplicates">Duplicates</button>
+  <button class="tab" data-tab="cleanup">Cleanup</button>
+</nav>
+
+<main>
+  <!-- TREEMAP -->
+  <section id="tab-treemap" class="tab-panel active">
+    <div class="cards" id="treemap-cards"></div>
+    <div class="panel">
+      <div class="panel-head">
+        <h3>Squarified Treemap — click to drill in</h3>
+        <span id="treemap-hover" class="hover-info"></span>
+      </div>
+      <canvas id="treemap-canvas" width="1160" height="640"></canvas>
+    </div>
+  </section>
+
+  <!-- SUNBURST -->
+  <section id="tab-sunburst" class="tab-panel">
+    <div class="panel">
+      <div class="panel-head"><h3>Storage Sunburst</h3>
+        <span id="sunburst-hover" class="hover-info"></span></div>
+      <canvas id="sunburst-canvas" width="1160" height="700"></canvas>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section id="tab-overview" class="tab-panel">
+    <div class="cards" id="stats-cards"></div>
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Size by Category</h3>
+        <canvas id="category-canvas" width="620" height="420"></canvas>
+      </div>
+      <div class="panel">
+        <h3>File Age Distribution</h3>
+        <canvas id="age-canvas" width="620" height="420"></canvas>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>File Size Distribution</h3>
+      <canvas id="size-canvas" width="1160" height="320"></canvas>
+    </div>
+    <div class="panel">
+      <h3>Largest Files</h3>
+      <table class="data-table" id="big-table">
+        <thead><tr><th>#</th><th>Size</th><th>Age</th><th>Category</th><th>Path</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- DUPLICATES -->
+  <section id="tab-duplicates" class="tab-panel">
+    <div class="cards" id="dupe-cards"></div>
+    <div id="dupe-list"></div>
+  </section>
+
+  <!-- CLEANUP -->
+  <section id="tab-cleanup" class="tab-panel">
+    <div class="cards" id="clean-cards"></div>
+    <div class="panel">
+      <h3>Recommendations (dry-run — nothing is deleted)</h3>
+      <table class="data-table" id="clean-table">
+        <thead><tr><th>Type</th><th>Reclaimable</th><th>Confidence</th><th>Path / Reason</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<div id="info-popover" class="popover hidden"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
